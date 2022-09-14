@@ -1,12 +1,36 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell {
+
     private boolean isVisible;
     private boolean isBomb;
     private int bombCount;
 
+    private boolean isCheckedByPlayer;
+
+    private final List<String> colors;
+
     public Cell() {
         bombCount = 0;
         isBomb = false;
-        isVisible = true;
+        isVisible = false;
+        isCheckedByPlayer = false;
+
+        colors = new ArrayList<>();
+        colors.add("\u001B[0m"); // WHITE
+        colors.add("\u001B[34m"); // BLUE
+        colors.add("\u001B[32m"); // GREEN
+        colors.add("\u001B[31m"); // RED
+        colors.add("\u001B[35m"); // PURPLE
+        colors.add("\u001B[33m"); // YELLOW
+        colors.add("\u001B[36m"); // CYAN
+        colors.add("\u001B[95m"); // BRIGHT CYAN
+
+    }
+
+    public boolean isVisible() {
+        return isVisible;
     }
 
     public void setVisible(boolean visible) {
@@ -29,10 +53,29 @@ public class Cell {
         this.bombCount = bombCount;
     }
 
+    public boolean isCheckedByPlayer() {
+        return isCheckedByPlayer;
+    }
+
+    public void setCheckedByPlayer(boolean checkedByPlayer) {
+        isCheckedByPlayer = checkedByPlayer;
+    }
+
+
     @Override
     public String toString() {
-        if (isVisible)
-            return isBomb ? "\uD83D\uDCA3" : " " + bombCount;
+        if (isCheckedByPlayer)
+            return "\uD83D\uDEA9";
+        if (isVisible) {
+            if (isBomb)
+                return "\uD83D\uDCA3";
+
+            if (bombCount == 0)
+                return "  ";
+
+            String COLOR_RESET = "\u001B[0m";
+            return " " + colors.get(bombCount) + bombCount + COLOR_RESET;
+        }
         return "XX";
     }
 }
