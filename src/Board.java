@@ -10,8 +10,10 @@ public class Board {
         this.size = size;
         this.numberOBombs = numberOBombs;
         this.board = new Cell[size][size];
+        
         Random random = new Random(seed);
         this.seed = random.nextLong();
+
         generateBoard();
     }
 

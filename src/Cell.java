@@ -2,13 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-
     private boolean isVisible;
     private boolean isBomb;
     private int bombCount;
-
     private boolean isCheckedByPlayer;
-
     private final List<String> colors;
 
     public Cell() {
@@ -26,7 +23,6 @@ public class Cell {
         colors.add("\u001B[33m"); // YELLOW
         colors.add("\u001B[36m"); // CYAN
         colors.add("\u001B[95m"); // BRIGHT CYAN
-
     }
 
     public boolean isVisible() {
@@ -61,14 +57,13 @@ public class Cell {
         isCheckedByPlayer = checkedByPlayer;
     }
 
-
     @Override
     public String toString() {
         if (isCheckedByPlayer)
-            return "\uD83D\uDEA9";
+            return "\uD83D\uDEA9"; // Flag emoji 🚩
         if (isVisible) {
             if (isBomb)
-                return "\uD83D\uDCA3";
+                return "\uD83D\uDCA3"; // Bomb emoji 💣
 
             if (bombCount == 0)
                 return "  ";
