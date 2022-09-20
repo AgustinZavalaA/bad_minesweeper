@@ -53,7 +53,6 @@ public class ConsoleGame {
                 }
             }
 
-
             board.applyMove(mode, row, col);
             moveList.add(new Integer[]{mode, row, col});
         }

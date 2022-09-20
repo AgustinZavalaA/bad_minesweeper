@@ -6,16 +6,36 @@ public class Board {
     private final Cell[][] board;
     private final long seed;
 
+    public Board(int size, int numberOBombs) {
+        this.size = size;
+        this.numberOBombs = numberOBombs;
+        this.board = new Cell[size][size];
+
+        Random random = new Random();
+        this.seed = random.nextLong();
+
+        generateBoard();
+    }
+
     public Board(int size, int numberOBombs, long seed) {
         this.size = size;
         this.numberOBombs = numberOBombs;
         this.board = new Cell[size][size];
-        
+
         Random random = new Random(seed);
         this.seed = random.nextLong();
 
         generateBoard();
     }
+
+    public Cell[][] getBoard() {
+        return board;
+    }
+    
+    public long getSeed() {
+        return seed;
+    }
+
 
     public void generateBoard() {
         // Fill the board with empty cells
@@ -72,7 +92,7 @@ public class Board {
             return;
 
         if (mode == 1) {
-            board[row][col].setCheckedByPlayer(true);
+            board[row][col].setCheckedByPlayer(!board[row][col].isCheckedByPlayer());
             return;
         }
 
@@ -119,4 +139,5 @@ public class Board {
                 }
         return true;
     }
+
 }

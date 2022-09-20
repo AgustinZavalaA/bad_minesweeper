@@ -73,4 +73,19 @@ public class Cell {
         }
         return "XX";
     }
+
+    public String toStringWithoutColor() {
+        if (isCheckedByPlayer)
+            return "\uD83D\uDEA9"; // Flag emoji 🚩
+        if (isVisible) {
+            if (isBomb)
+                return "\uD83D\uDCA3"; // Bomb emoji 💣
+
+            if (bombCount == 0)
+                return "  ";
+
+            return " " + bombCount;
+        }
+        return " ";
+    }
 }
